@@ -1,0 +1,381 @@
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== MAIN CONTAINER - FULLY RESPONSIVE GRID ===== */
+.users-cont {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  background-color: gray;
+  padding: clamp(10px, 3vw, 30px);
+  margin: 0 auto;
+}
+
+/* ===== CARD STYLES ===== */
+.user-card-cont {
+  border: 3px solid red;
+  background-color: gray;
+  color: black;
+  position: relative;
+  z-index: 9999;
+  width: 100%;
+  height: fit-content;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-card-cont:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== CARD CONTENT ===== */
+.user-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(10px, 2vw, 20px);
+  width: 100%;
+  height: 100%;
+  padding: clamp(12px, 3vw, 25px);
+}
+
+/* ===== AVATAR ===== */
+.user-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: clamp(60px, 15vw, 120px);
+  height: clamp(60px, 15vw, 120px);
+}
+
+/* ===== USER INFO ===== */
+.user-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, 1vw, 10px);
+}
+
+.repo-name {
+  color: black;
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  font-weight: bold;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.repo-id {
+  color: black;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+  word-break: break-word;
+}
+
+.repo-url {
+  color: black;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  word-break: break-all;
+  opacity: 0.9;
+}
+
+/* ===== TEST CONTAINERS ===== */
+.test-container {
+  width: 100%;
+  padding: clamp(8px, 2vw, 15px) !important;
+  margin: clamp(5px, 1vw, 10px) 0 !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.blue-border {
+  border: 2px solid blue;
+}
+
+.green-border {
+  border: 2px solid green;
+}
+
+.orange-border {
+  border: 2px solid orange;
+}
+
+/* ===== TEST LINKS & BUTTONS ===== */
+.test-link {
+  color: blue;
+  font-size: clamp(12px, 3vw, 18px);
+  text-decoration: underline;
+  display: block;
+  padding: clamp(8px, 2vw, 15px) clamp(10px, 3vw, 20px);
+  background-color: lightblue;
+  border-radius: 6px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.test-link:hover {
+  background-color: #99c9ff;
+  transform: scale(1.02);
+}
+
+.test-link:active {
+  transform: scale(0.98);
+}
+
+.test-button {
+  display: block;
+  padding: clamp(8px, 2vw, 15px) clamp(10px, 3vw, 20px);
+  border: none;
+  cursor: pointer;
+  font-size: clamp(12px, 3vw, 16px);
+  width: 100%;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.test-button:hover {
+  transform: scale(1.02);
+}
+
+.test-button:active {
+  transform: scale(0.98);
+}
+
+.test-button.green {
+  background-color: green;
+  color: white;
+}
+
+.test-button.green:hover {
+  background-color: #006400;
+}
+
+.test-button.orange {
+  background-color: orange;
+  color: black;
+}
+
+.test-button.orange:hover {
+  background-color: #ffb347;
+}
+
+/* ===== LOADING CONTAINER ===== */
+.loading-container {
+  grid-column: 1/-1;
+  text-align: center;
+  color: black;
+  padding: clamp(20px, 5vw, 50px);
+  font-size: clamp(1.2rem, 5vw, 2rem);
+}
+
+/* ===== RESPONSIVE GRID LAYOUTS FOR ALL SCREENS ===== */
+
+/* Extra Small Devices (Phones, 320px and below) */
+@media screen and (max-width: 320px) {
+  .users-cont {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 5px;
+  }
+
+  .user-card-content {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .test-container {
+    margin: 4px 0 !important;
+  }
+}
+
+/* Small Phones (321px to 480px) */
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  .users-cont {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .user-card-content {
+    padding: 12px;
+    gap: 10px;
+  }
+}
+
+/* Large Phones (481px to 576px) */
+@media screen and (min-width: 481px) and (max-width: 576px) {
+  .users-cont {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+}
+
+/* Small Tablets (577px to 768px) */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .users-cont {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 12px;
+  }
+}
+
+/* Tablets (769px to 992px) */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .users-cont {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 15px;
+  }
+}
+
+/* Small Laptops (993px to 1200px) */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .users-cont {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 18px;
+  }
+}
+
+/* Desktops (1201px to 1400px) */
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .users-cont {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    padding: 20px;
+  }
+}
+
+/* Large Desktops (1401px to 1600px) */
+@media screen and (min-width: 1401px) and (max-width: 1600px) {
+  .users-cont {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 22px;
+  }
+}
+
+/* Extra Large Desktops (1601px to 1920px) */
+@media screen and (min-width: 1601px) and (max-width: 1920px) {
+  .users-cont {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    padding: 25px;
+    max-width: 1800px;
+  }
+}
+
+/* Ultra Large Screens (1921px and above) */
+@media screen and (min-width: 1921px) {
+  .users-cont {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 28px;
+    padding: 30px;
+    max-width: 95%;
+  }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  .users-cont {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .user-card-content {
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .repo-name {
+    font-size: 0.9rem;
+  }
+
+  .repo-id,
+  .repo-url {
+    font-size: 0.7rem;
+  }
+
+  .test-container {
+    margin: 3px 0 !important;
+    padding: 5px !important;
+  }
+
+  .test-link,
+  .test-button {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* ===== HIGH DPI SCREENS (Retina) ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .user-avatar {
+    border-width: 2px;
+  }
+
+  .test-link,
+  .test-button {
+    border-width: 1px;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .users-cont {
+    background-color: #1a1a1a;
+  }
+
+  .user-card-cont {
+    background-color: #2d2d2d;
+    border-color: #ff6b6b;
+  }
+
+  .repo-name,
+  .repo-id,
+  .repo-url {
+    color: #ffffff;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .users-cont {
+    background-color: white;
+  }
+
+  .user-card-cont {
+    border: 1px solid black;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .test-link,
+  .test-button {
+    display: none;
+  }
+}
