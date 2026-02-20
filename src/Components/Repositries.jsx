@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const Repositries = () => {
   const [repos, setRepos] = useState(null);
@@ -38,7 +39,16 @@ const Repositries = () => {
                 <p className="repo-url">URL: {repo.html_url}</p>
               </div>
 
-              {/* TEST 1: Regular anchor */}
+              {/* Main Interactive Button - Shows Profile First, Then Repo */}
+              <div className="test-container purple-border">
+                <Link to={`/repo-detail/${repo.owner.login}/${repo.name}`}>
+                  <button className="test-button purple">
+                    👤 View Owner Profile & Repository
+                  </button>
+                </Link>
+              </div>
+
+              {/* Original buttons kept for reference */}
               <div className="test-container blue-border">
                 <a
                   href={repo.html_url}
@@ -46,24 +56,10 @@ const Repositries = () => {
                   rel="noopener noreferrer"
                   className="test-link"
                 >
-                  TEST 1 - Regular Link
+                  Direct Link to Repo
                 </a>
               </div>
 
-              {/* TEST 2: Button with onClick */}
-              <div className="test-container green-border">
-                <button
-                  onClick={() => {
-                    console.log("Button clicked for:", repo.name);
-                    window.open(repo.html_url, "_blank");
-                  }}
-                  className="test-button green"
-                >
-                  TEST 2 - Button
-                </button>
-              </div>
-
-              {/* TEST 3: Double-check URL */}
               <div className="test-container orange-border">
                 <button
                   onClick={() => {
@@ -73,7 +69,7 @@ const Repositries = () => {
                   }}
                   className="test-button orange"
                 >
-                  TEST 3 - Constructed URL
+                  Open in GitHub
                 </button>
               </div>
             </div>

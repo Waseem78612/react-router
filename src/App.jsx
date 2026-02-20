@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+
 import { Route, Routes, Link, useLocation } from "react-router-dom";
 import Repositries from "./Components/Repositries.jsx";
 import Home from "./Components/Home.jsx";
-import NotFoundFun from "./Components/NotFoundFun.jsx"; // Import the 404 component
-// import NotFoundFun from "./Components/NotFoundFun.jsx"; // Alternative fun version
+import RepoDetail from "./Components/RepoDetails.jsx";
+import NotFoundFun from "./Components/NotFoundFun.jsx";
 
 function App() {
   const location = useLocation();
@@ -22,7 +23,6 @@ function App() {
             Discover amazing repositories from GitHub
           </p>
 
-          {/* Navigation Buttons - Hide on 404? Optional */}
           {location.pathname !== "/404" && (
             <nav className="flex justify-center gap-4 mt-6">
               <Link to="/">
@@ -55,15 +55,15 @@ function App() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/repositories" element={<Repositries />} />
-
-          {/* 404 Route - This catches all undefined routes */}
+          <Route
+            path="/repo-detail/:username/:reponame"
+            element={<RepoDetail />}
+          />
           <Route path="*" element={<NotFoundFun />} />
-          {/* <Route path="*" element={<NotFoundFun />} /> */}
         </Routes>
       </main>
     </div>
