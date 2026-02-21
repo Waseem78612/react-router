@@ -1,41 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./styles.css";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
-const Repositries = () => {
+const StarredRepos = () => {
   const [repos, setRepos] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const gitRepos = async () => {
+  const fetchStarredRepos = async () => {
     try {
       const response = await axios.get(
-        "https://api.github.com/search/repositories?q=stars:>1000&sort=stars&order=desc&per_page=30",
+        "https://api.github.com/search/repositories?q=stars:>500&sort=stars&order=desc&per_page=30",
       );
-      console.log("API Response:", response.data.items);
+      console.log("Starred Repos:", response.data.items);
       setRepos(response.data.items);
     } catch (error) {
-      console.error("Error fetching repos:", error);
+      console.error("Error fetching starred repos:", error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    gitRepos();
+    fetchStarredRepos();
   }, []);
 
   if (loading) {
     return (
       <div className="loading-container">
-        <h1>Loading repositories...</h1>
+        <h1>Loading starred repositories...</h1>
       </div>
     );
   }
 
   return (
     <div className="repos-container">
-      <h2 className="section-title">📚 All Repositories</h2>
+      <div className="page-header">
+        <h1 className="page-title">✨ Most Starred Repositories</h1>
+        <p className="page-subtitle">Repositories with over 500 stars</p>
+      </div>
+
       <div className="cards-grid">
         {repos &&
           repos.map((repo, index) => (
@@ -50,36 +54,26 @@ const Repositries = () => {
 
                   <div className="user-info">
                     <h2 className="repo-name">
-                      {index + 1}. {repo.name}
+                      #{index + 1}. {repo.name}
                     </h2>
-                    <p className="repo-id">ID: {repo.id}</p>
                     <p className="repo-stars">
                       ⭐ {repo.stargazers_count?.toLocaleString() || 0} stars
                     </p>
-                    <p className="repo-language">
-                      🔵 {repo.language || "Not specified"}
+                    <p className="repo-description">
+                      📝{" "}
+                      {repo.description?.substring(0, 60) ||
+                        "No description available"}
+                      ...
                     </p>
                   </div>
 
-                  {/* Main Interactive Button - View Details */}
+                  {/* Single Button - View Details */}
                   <div className="test-container purple-border">
                     <Link to={`/repo-detail/${repo.owner.login}/${repo.name}`}>
                       <button className="test-button purple">
                         👤 View Details
                       </button>
                     </Link>
-                  </div>
-
-                  {/* Single GitHub Link - No duplicate functionality */}
-                  <div className="test-container blue-border">
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="test-link"
-                    >
-                      🔗 Open in GitHub
-                    </a>
                   </div>
                 </div>
               </div>
@@ -90,4 +84,4 @@ const Repositries = () => {
   );
 };
 
-export default Repositries;
+export default StarredRepos;
